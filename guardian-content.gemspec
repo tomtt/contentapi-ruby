@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
      "test/test_section.rb",
      "test/test_tag_search.rb"
   ]
-  s.homepage = %q{http://github.com/frankieroberto/guardian-content}
+  s.homepage = %q{http://github.com/guardian-openplatform/contentapi-ruby}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.6}
