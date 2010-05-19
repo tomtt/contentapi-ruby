@@ -1,0 +1,64 @@
+= guardian-content
+
+This gem allows you to interface with the Guardian-Content-API[http://www.guardian.co.uk/open-platform] via Ruby.
+
+== Installation
+
+Installation is as simple as typing the following text into a command prompt (such as Terminal):
+
+  gem install guardian-content
+
+== Usage
+
+To use the library within a project, simply include the line <code>require 'guardian-content'</code> - you can then use any of the methods listed below.
+
+Whilst the Guardian Content API doesn't require an API key for basic usage, for increased rate limits, and the ability to retrieve full text content, it is recommended that you register for an API key at http://guardian.mashery.com/. Once authorised, you can use the key via either declaring a <code>GUARDIAN_CONTENT_API_KEY</code> constant, or via the <code>key</code> param when initialising the class.
+
+=== Basic searching
+
+To do a basic free text search of Guardian documents, simply use the following command:
+
+  articles = GuardianContent::Content.search("your search term")
+
+If successful, this will the return an array of results, which you can loop through and access via some standard attributes:
+
+	articles.each do |article|
+		puts article.title
+		puts article.url
+	end
+
+To include additional meta-data in the results, use the <code>:select</code> parameter. There are two types of data you can request, tags and fields. To select all of both, use <code>:select => {:tags => :all, :fields => :all}</code>. You can then access the tags and keywords via attributes:
+
+	articles = GuardianContent::Content.search("your search term", :select => {:tags => :all, :fields => :all})
+	
+	articles.first.tags.each do |tag|
+		puts tag[:id]
+		puts tag[:title]
+	end
+	
+	puts articles.first.fields[:standfirst]
+	puts articles.first.fields[:headline]
+
+=== Retrieving an article based on id
+
+Each article or content item has a unique id. This can be accessed either via the #id attribute on a returned search result, or you can determine it from the Guardian website itself - the id is simply everything in an article's URL after the host name - eg for http://www.guardian.co.uk/world/2010/may/17/iran-nuclear-uranium-swap-turkey the id is <code>world/2010/may/17/iran-nuclear-uranium-swap-turkey</code>.
+
+To retrieve an article based on its id, use the #find_by_id method:
+
+	article = GuardianContent::Content.find_by_id("world/2010/may/17/iran-nuclear-uranium-swap-turkey")
+	
+The article's content and meta-data can then be accessed in the same way as for search results.	
+
+== Note on Patches/Pull Requests
+ 
+* Fork the project.
+* Make your feature addition or bug fix.
+* Add tests for it. This is important so I don't break it in a
+  future version unintentionally.
+* Commit, do not mess with rakefile, version, or history.
+  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
+* Send me a pull request. Bonus points for topic branches.
+
+== Copyright
+
+Copyright (c) 2010 frankieroberto. See LICENSE for details.
