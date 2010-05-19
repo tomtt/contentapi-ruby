@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["frankieroberto"]
-  s.date = %q{2010-05-17}
+  s.date = %q{2010-05-19}
   s.description = %q{A library for the Guardian Content API}
   s.email = %q{frankie@frankieroberto.com}
   s.extra_rdoc_files = [
@@ -17,8 +17,7 @@ Gem::Specification.new do |s|
      "README.rdoc"
   ]
   s.files = [
-    ".document",
-     ".gitignore",
+    ".gitignore",
      "LICENSE",
      "README.rdoc",
      "Rakefile",
