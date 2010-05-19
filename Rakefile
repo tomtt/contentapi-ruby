@@ -8,7 +8,7 @@ begin
     gem.summary = %Q{Queries the Guardian Content API}
     gem.description = %Q{A library for the Guardian Content API}
     gem.email = "frankie@frankieroberto.com"
-    gem.homepage = "http://github.com/frankieroberto/guardian-content"
+    gem.homepage = "http://github.com/guardian-openplatform/contentapi-ruby"
     gem.authors = ["frankieroberto"]
     gem.add_development_dependency "shoulda", ">= 2.10.3"
     gem.add_dependency('httparty', '>= 0.5.2')
