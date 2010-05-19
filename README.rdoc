@@ -61,4 +61,4 @@ The article's content and meta-data can then be accessed in the same way as for 
 
 == Copyright
 
-Copyright (c) 2010 frankieroberto. See LICENSE for details.
+Copyright (c) 2010 Copyright 2010 Guardian News and Media Ltd. See LICENCE for details.
