@@ -8,6 +8,8 @@ Installation is as simple as typing the following text into a command prompt (su
 
   gem install guardian-content
 
+Alternatively, the gem can be directly downloaded from http://rubygems.org/gems/guardian-content
+
 == Usage
 
 To use the library within a project, simply include the line <code>require 'guardian-content'</code> - you can then use any of the methods listed below.
