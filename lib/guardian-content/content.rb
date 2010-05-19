@@ -1,3 +1,12 @@
+# This class represents 'content' items that have appeared on guardian.co.uk.  Content items
+# are usually articles, but can also be image galleries, videos, and so on.
+# ==== Attributes
+# * +id+ - The Guardian ID of the content item, which is the same as the 'path' part of its URL, eg +world/2010/may/17/iran-nuclear-uranium-swap-turkey+ 
+# * +title+ - The content item's title, as used on its web page.
+# * +url+ - The full URL of the content item.
+# * +publication_date+ - The date and time on which the content item was published. Returned as a DateTime instance.
+# * +tags+ - A hash containing all of the content item's 'tags' (see Tag). Note, these are only available if selected, eg <code>find_by_id(id, :select => {:tags => :all})</code>
+# * +fields+ - A hash containing all of the content item's 'fields'. Note, these are only available if selected - eg <code>find_by_id(id, :select => {:fields => :all})</code>
 class GuardianContent::Content < GuardianContent::Base
 
   attr_reader :title, :id, :url, :publication_date, :section_id, :body, :keywords, :fields, :headline, :tags, :attributes
@@ -29,6 +38,7 @@ class GuardianContent::Content < GuardianContent::Base
     "#<Article id: \"" + self.id.to_s + "\" title: \"" + self.title.to_s + "\" + url: \"" + self.url.to_s + "\">"
   end
   
+  # Returns the Section in which the content item was published.
   def section
     return GuardianContent::Section.find_by_id(self.section_id)
   end
