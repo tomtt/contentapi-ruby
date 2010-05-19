@@ -2,15 +2,12 @@ require 'helper'
 
 class TestGuardianContent < Test::Unit::TestCase
 
-  should "do a reload" do
-    article = GuardianContent::Content.new(:id => "world/2010/may/12/thailand-red-shirt-protesters-siege")
-    
-    assert article.title.nil?
-    article.reload
-    assert_equal "", article.title
-    
-  end
-
+#    should "do a reload" do
+#      article = GuardianContent::Content.new(:id => "world/2010/may/12/thailand-red-shirt-protesters-siege")
+#      assert article.title.nil?
+#      article.reload
+#      assert_equal "", article.title    
+#    end
 
     should "get a keyword" do
       keyword = GuardianContent::Keyword.find_by_id("world/thailand")
