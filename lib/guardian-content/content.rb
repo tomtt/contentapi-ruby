@@ -17,7 +17,10 @@ class GuardianContent::Content < GuardianContent::Base
     @title = attributes[:webTitle]
     @url = attributes[:webUrl]
     @section_id = attributes[:sectionId]
-    @publication_date = DateTime.parse(attributes[:webPublicationDate]) if attributes && attributes[:webPublicationDate]
+    @publication_date = attributes[:webPublicationDate]
+    if @publication_date && !@publication_date.respond_to?(:yday)
+      @publication_date = DateTime.parse(@publication_date)
+    end
     @body = attributes[:body]
     
     if attributes[:tags]
