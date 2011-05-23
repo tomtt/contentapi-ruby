@@ -8,7 +8,7 @@ class Hash
     end
     self
   end
-  
+
   def nested_stringify_keys!
     each do |k,v|
       s = k.respond_to?(:to_s) ? k.to_s : k
@@ -17,7 +17,7 @@ class Hash
     end
     self
   end
-  
+
 end
 
 # This version works with both hashes and arrays
