@@ -115,7 +115,7 @@ class GuardianContent::Content < GuardianContent::Base
   end
 
   def self.response_for_id_find(id, options)
-    query = {}
+    query = options
     query["show-fields"] = "all"
     query["show-tags"] = "all"
     query[:format] = "json"
