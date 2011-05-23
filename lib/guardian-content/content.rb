@@ -88,19 +88,33 @@ class GuardianContent::Content < GuardianContent::Base
     opts = {:query => query}
 
     response = self.get("/search", opts).nested_symbolize_keys![:response]
+    return collate_results_from_response(response)
+  end
 
-    results = recursively_symbolize_keys!(response[:results])
-    content = []
-
-    results.each do |result|
-      content << GuardianContent::Content.new(recursively_symbolize_keys!(result))
-    end
-    return content
+  def self.find_all_by_id(id, options = {})
+    response = response_for_id_find(id, options)
+    return collate_results_from_response(response)
   end
 
   # Fetch a Content item using its id. IDs are usually in the form of <tt>section/YYYY/month/DD/name-of-article</tt>.
   def self.find_by_id(id, options = {})
+    response = response_for_id_find(id, options)
+    content = response[:content]
 
+    return GuardianContent::Content.new(recursively_symbolize_keys!(content))
+
+  end
+
+  private
+
+  def self.collate_results_from_response(response)
+    results = recursively_symbolize_keys!(response[:results])
+    return results.map do |result|
+      GuardianContent::Content.new(recursively_symbolize_keys!(result))
+    end
+  end
+
+  def self.response_for_id_find(id, options)
     query = {}
     query["show-fields"] = "all"
     query["show-tags"] = "all"
@@ -108,13 +122,6 @@ class GuardianContent::Content < GuardianContent::Base
     opts = {:query => query}
 
     attributes = {}
-
-    response = recursively_symbolize_keys!self.get("/#{id}", opts).nested_symbolize_keys![:response]
-
-    content = response[:content]
-
-    return GuardianContent::Content.new(recursively_symbolize_keys!(content))
-
+    return recursively_symbolize_keys!self.get("/#{id}", opts).nested_symbolize_keys![:response]
   end
-
 end
